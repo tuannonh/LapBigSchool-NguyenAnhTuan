@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LapBigSchool_NguyenAnhTuan.Controllers
 {
     
@@ -20,6 +21,15 @@ namespace LapBigSchool_NguyenAnhTuan.Controllers
         // GET: Courses
         [Authorize]
         [HttpGet]
+        public ActionResult Create()
+        {
+            var viewModel = new CourseViewModel();
+            {
+                viewModel.Categories = _dbContext.Categories.ToList();
+            }
+            return View(viewModel);
+        }
+        [HttpPost]
         [ValidateAntiForgeryToken]
         
         public ActionResult Create(CourseViewModel viewModel)
